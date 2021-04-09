@@ -7,9 +7,11 @@ const UserSchema = new Schema({
   lastName: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  membershipStatus: { type: String, required: true },
+  membershipStatus: { type: String },
 });
 
 UserSchema.virtual('username').get(() => {
   return this.email;
 });
+
+module.exports = mongoose.model('User', UserSchema);
