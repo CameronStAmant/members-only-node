@@ -1,0 +1,31 @@
+extends layout 
+
+block content 
+  h1 Sign up
+
+  form(method='POST', action='')
+    label(for='firstName') First name
+    br
+    input(type='text' name='firstName' value=(user !== undefined ? user.firstName : ''))
+    br
+    label(for='lastName') Last name 
+    br
+    input(type='text' name='lastName' value=(user !== undefined ? user.lastName : ''))
+    br
+    label(for='email') Email
+    br
+    input(type='email' name='email' value=(user !== undefined ? user.email : ''))
+    br
+    label(for='password') Password 
+    br
+    input(type='password' name='password' value=(user !== undefined ? user.password : ''))
+    br
+    label(for='isAdmin') Are you an admin?
+    br
+    input(type='checkbox' name='isAdmin')
+    br
+    input(type='submit' value='Sign up')
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
