@@ -6,10 +6,14 @@ block content
   form(method='POST' action='')
     label(for='email') Email 
     br
-    input(type='email' name='email')
+    input(type='email' name='email' value=(email !== undefined ? email : ''))
     br
     label(for='password') Password
     br
-    input(type='password' name='password')
+    input(type='password' name='password' value=(password !== undefined ? password : ''))
     br
     input(type='submit' value='Login')
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
