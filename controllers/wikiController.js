@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const { body, validationResult } = require('express-validator');
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
 
 exports.login_get = (req, res, next) => {
   res.render('login');
@@ -53,38 +54,40 @@ exports.signup_post = [
 
   (req, res, next) => {
     const errors = validationResult(req);
-    const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-    });
+    bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
+      const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: hashedPassword,
+      });
 
-    if (!errors.isEmpty()) {
-      res.render('signup', {
-        user: user,
-        errors: errors.array(),
-      });
-      return;
-    } else {
-      User.findOne({ email: req.body.email }).exec((err, found_user) => {
-        if (err) {
-          return next(err);
-        }
-        if (found_user) {
-          res.render('signup', {
-            user: user,
-            errors: [{ msg: 'Email already in use' }],
-          });
-        } else {
-          user.save((err) => {
-            if (err) {
-              return next(err);
-            }
-            res.redirect('login');
-          });
-        }
-      });
-    }
+      if (!errors.isEmpty()) {
+        res.render('signup', {
+          user: user,
+          errors: errors.array(),
+        });
+        return;
+      } else {
+        User.findOne({ email: req.body.email }).exec((err, found_user) => {
+          if (err) {
+            return next(err);
+          }
+          if (found_user) {
+            res.render('signup', {
+              user: user,
+              errors: [{ msg: 'Email already in use' }],
+            });
+          } else {
+            user.save((err) => {
+              if (err) {
+                return next(err);
+              }
+              res.redirect('login');
+            });
+          }
+        });
+      }
+    });
   },
 ];
