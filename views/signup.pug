@@ -18,7 +18,11 @@ block content
     br
     label(for='password') Password 
     br
-    input(type='password' name='password' value=(user !== undefined ? user.password : ''))
+    input(type='password' name='password' value=(password !== undefined ? password : ''))
+    br
+    label(for='passwordConfirmation') Confirm password 
+    br
+    input(type='password' name='passwordConfirmation')
     br
     label(for='isAdmin') Are you an admin?
     br

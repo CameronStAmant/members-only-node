@@ -51,6 +51,9 @@ exports.signup_post = [
     .escape(),
   body('email', 'Email is required').trim().isLength({ min: 1 }).escape(),
   body('password', 'Password is required').trim().isLength({ min: 1 }).escape(),
+  body('passwordConfirmation', 'The two passwords do not match.')
+    .exists()
+    .custom((value, { req }) => value === req.body.password),
 
   (req, res, next) => {
     const errors = validationResult(req);
@@ -65,6 +68,7 @@ exports.signup_post = [
       if (!errors.isEmpty()) {
         res.render('signup', {
           user: user,
+          password: req.body.password,
           errors: errors.array(),
         });
         return;
@@ -76,6 +80,7 @@ exports.signup_post = [
           if (found_user) {
             res.render('signup', {
               user: user,
+
               errors: [{ msg: 'Email already in use' }],
             });
           } else {
