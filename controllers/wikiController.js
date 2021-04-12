@@ -65,6 +65,7 @@ exports.signup_post = [
         email: req.body.email,
         password: hashedPassword,
         membershipStatus: false,
+        adminStatus: false,
       });
 
       if (!errors.isEmpty()) {
@@ -125,6 +126,7 @@ exports.join_club_post = [
               password: req.user.password,
               _id: req.user._id,
               membershipStatus: true,
+              adminStatus: req.user.adminStatus,
             });
             User.findByIdAndUpdate(
               req.user._id,
@@ -173,6 +175,54 @@ exports.create_message_post = [
         }
         res.redirect('/');
       });
+    }
+  },
+];
+
+exports.add_admin_get = (req, res, next) => {
+  res.render('add_admin');
+};
+
+exports.add_admin_post = [
+  body('adminCode').trim().isLength({ min: 1 }).escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('add-admin');
+      return;
+    } else {
+      if (req.body.adminCode === 'upgrade') {
+        User.findOne({ _id: req.user._id }).exec((err, user) => {
+          if (err) {
+            return next(err);
+          }
+          if (user) {
+            const user = new User({
+              firstName: req.user.firstName,
+              lastName: req.user.lastName,
+              email: req.user.email,
+              password: req.user.password,
+              _id: req.user._id,
+              membershipStatus: req.user.membershipStatus,
+              adminStatus: true,
+            });
+            User.findByIdAndUpdate(
+              req.user._id,
+              user,
+              {},
+              (err, updatedUser) => {
+                if (err) {
+                  return next(err);
+                }
+                res.redirect('/');
+              }
+            );
+          }
+        });
+      } else {
+        res.render('add-admin');
+      }
     }
   },
 ];

@@ -19,6 +19,10 @@ router.get('/create-message', wiki_controller.create_message_get);
 
 router.post('/create-message', wiki_controller.create_message_post);
 
+router.get('/add-admin', wiki_controller.add_admin_get);
+
+router.post('/add-admin', wiki_controller.add_admin_post);
+
 router.get('/');
 
 module.exports = router;
