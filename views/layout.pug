@@ -5,4 +5,17 @@ html
     link(rel='icon', href='/images/lock-line.png')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    nav
+      ul
+        h3 #[a(href='/') Secret Message Board]
+        div
+          if user !== undefined
+            p Hello, #{user.firstName}
+            p | 
+            a(href='/logout') Logout
+          else 
+            a(href='/login') Login
+            p | 
+            a(href='/signup') Signup 
+    div.content
+      block content

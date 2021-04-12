@@ -2,23 +2,26 @@ extends layout
 
 block content
   h1= title
-  if user
-    p You're logged in #{user.firstName}.
-    if user.membershipStatus === false
-      p Now that you have an account, enter the secret code #[a(href='join-club') here] to join the club!
+  div.intro
+    if user
+      if user.membershipStatus === false
+        p Now that you have an account, enter the secret code #[a(href='join-club') here] to post messages!
+      else if user.adminStatus === false
+        p #[a(href='create-message') Create a message] or #[a(href='add-admin') become an admin] so you can delete messages.
+      else 
+        p #[a(href='create-message') Create a message]
     else 
-      a(href='create-message') Create a message!
-  else 
-    p Welcome to the club!
+      p Login to see who created each post and when.
   if messages 
     ul 
       for message in messages
-        if user !== undefined && user.adminStatus === true
-          form(method='POST' action='')
-            input(type='hidden' name='id' value=message.id)
-            input(type='submit' value='Delete')
-        h2= message.title
-        if user
-          p Author: #{message.author.firstName}
-          p Date: #{message.timestamp_formatted}
-        p= message.body
+        div.message
+          h2= message.title
+          if user !== undefined && user.adminStatus === true
+            form(method='POST' action='' id='deleteMessage')
+              input(type='hidden' name='id' value=message.id)
+            button.delete(type='submit' form='deleteMessage' value='Submit') Delete
+          if user
+            p.author #{message.author.firstName}
+            p.date #{message.timestamp_formatted}
+          p.messageBody= message.body

@@ -1,8 +1,132 @@
+* {
+  padding: 0;
+  margin: 0; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgba(64, 191, 172, 0.15); }
 
 a {
   color: #00B7FF; }
+
+nav ul {
+  padding: 20px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center; }
+  nav ul div {
+    grid-column-start: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    grid-auto-flow: column; }
+
+nav a {
+  text-decoration: none;
+  color: black; }
+
+h1 {
+  padding-bottom: 50px; }
+
+.content {
+  padding: 50px;
+  display: grid;
+  place-items: center; }
+  .content .message {
+    border: solid black 3px;
+    padding: 10px;
+    background-color: rgba(64, 191, 172, 0.4);
+    box-shadow: 0 0 10px #000000;
+    margin: 30px;
+    place-items: start;
+    display: grid;
+    grid-template: repeat(4, 1fr)/repeat(10, 1fr);
+    grid-template-areas: 'title title title title title title title title title delete' 'author date date . . . . . . .' 'body body body body body body body body body body' 'body body body body body body body body body body';
+    width: 600px; }
+    .content .message h2 {
+      grid-area: title; }
+    .content .message .delete {
+      grid-area: delete;
+      width: 100%;
+      height: 100%; }
+    .content .message .author {
+      grid-area: author; }
+    .content .message .date {
+      grid-area: date; }
+    .content .message .messageBody {
+      grid-area: body; }
+
+.newMessage {
+  display: grid;
+  grid-template: repeat(5, 25px)/repeat(6, 1fr);
+  grid-template-areas: 'title . . . . .' 'titleInput titleInput titleInput titleInput titleInput titleInput' 'body . . . . .' 'bodyInput bodyInput bodyInput bodyInput bodyInput bodyInput' 'post . . . . .';
+  width: 600px; }
+  .newMessage #title {
+    grid-area: title; }
+  .newMessage #titleInput {
+    grid-area: titleInput; }
+  .newMessage #body {
+    grid-area: body; }
+  .newMessage #bodyInput {
+    grid-area: bodyInput; }
+  .newMessage #post {
+    grid-area: post; }
+
+.loginForm {
+  display: grid;
+  grid-template: repeat(5, 25px)/repeat(6, 1fr);
+  grid-template-areas: 'email . . . . .' 'emailLogin emailLogin emailLogin emailLogin emailLogin emailLogin' 'password . . . . .' 'passwordLogin passwordLogin passwordLogin passwordLogin passwordLogin passwordLogin' 'login . . . . .';
+  width: 600px; }
+  .loginForm #email {
+    grid-area: email; }
+  .loginForm #emailLogin {
+    grid-area: emailLogin; }
+  .loginForm #password {
+    grid-area: password; }
+  .loginForm #passwordLogin {
+    grid-area: passwordLogin; }
+  .loginForm #login {
+    grid-area: login; }
+
+.signupForm {
+  display: grid;
+  grid-template: repeat(11, 25px)/repeat(6, 1fr);
+  grid-template-areas: 'firstName firstName . . . .' 'firstNameInput firstNameInput firstNameInput firstNameInput firstNameInput firstNameInput' 'lastName lastName . . . .' 'lastNameInput lastNameInput lastNameInput lastNameInput lastNameInput lastNameInput' 'emailSignup emailSignup . . . .' 'emailSignupInput emailSignupInput emailSignupInput emailSignupInput emailSignupInput emailSignupInput' 'passwordSignup passwordSignup . . . .' 'passwordSignupInput passwordSignupInput passwordSignupInput passwordSignupInput passwordSignupInput passwordSignupInput' 'confirmPassword confirmPassword . . . .' 'confirmPasswordInput confirmPasswordInput confirmPasswordInput confirmPasswordInput confirmPasswordInput confirmPasswordInput' 'signup . . . . .';
+  width: 600px; }
+  .signupForm #firstName {
+    grid-area: firstName; }
+  .signupForm #firstNameInput {
+    grid-area: firstNameInput; }
+  .signupForm #lastName {
+    grid-area: lastName; }
+  .signupForm #lastNameInput {
+    grid-area: lastNameInput; }
+  .signupForm #emailSignup {
+    grid-area: emailSignup; }
+  .signupForm #emailSignupInput {
+    grid-area: emailSignupInput; }
+  .signupForm #passwordSignup {
+    grid-area: passwordSignup; }
+  .signupForm #passwordSignupInput {
+    grid-area: passwordSignupInput; }
+  .signupForm #confirmPassword {
+    grid-area: confirmPassword; }
+  .signupForm #confirmPasswordInput {
+    grid-area: confirmPasswordInput; }
+  .signupForm #signup {
+    grid-area: signup; }
+
+.adminForm {
+  display: grid;
+  grid-template: repeat(3, 25px)/repeat(6, 1fr);
+  grid-template-areas: 'adminCode adminCode adminCode adminCode adminCode adminCode' 'adminCodeInput adminCodeInput adminCodeInput adminCodeInput adminCodeInput adminCodeInput' 'adminCodeSubmit . . . . .';
+  width: 600px; }
+  .adminForm #adminCode {
+    grid-area: adminCode; }
+  .adminForm #adminCodeInput {
+    grid-area: adminCodeInput; }
+  .adminForm #adminCodeSubmit {
+    grid-area: adminCodeSubmit; }
 
 /*# sourceMappingURL=style.css.map */

@@ -3,12 +3,10 @@ extends layout
 block content 
   h1 Become an Admin!
 
-  form(method='POST' action='')
-    label(for='adminCode') Enter the secret code to become an admin 
-    br
-    input(type='text' name='adminCode')
-    br
-    input(type='submit' value='Upgrade')
+  form.adminForm(method='POST' action='')
+    label#adminCode(for='adminCode') Enter the secret code to become an admin. 
+    input#adminCodeInput(type='text' name='adminCode')
+    input#adminCodeSubmit(type='submit' value='Upgrade')
   if errors
     ul 
       for error in errors 

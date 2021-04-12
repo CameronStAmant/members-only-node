@@ -1,6 +1,163 @@
+*
+  padding: 0
+  margin: 0
+
 body
-  padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  background-color: rgba(64,191,172,0.15)
 
 a
   color: #00B7FF
+
+nav
+  ul
+    padding: 20px
+    display: grid
+    grid-auto-flow: column
+    grid-template-columns: repeat(4, 1fr)
+    place-items: center
+
+    
+    div
+      grid-column-start: 4
+      display: grid
+      grid-template-columns: 1fr 1fr
+      place-items: center
+      grid-auto-flow: column
+  
+  a
+    text-decoration: none
+    color: black
+
+h1
+  padding-bottom: 50px
+
+.content
+  padding: 50px
+  display: grid
+  place-items: center
+
+  .message
+    border: solid black 3px
+    padding: 10px
+    background-color: rgba(64,191,172,0.4)
+    box-shadow: 0 0 10px #000000
+    margin: 30px
+    place-items: start
+    display: grid
+    grid-template: repeat(4, 1fr) / repeat(10, 1fr)
+    grid-template-areas: 'title title title title title title title title title delete' 'author date date . . . . . . .' 'body body body body body body body body body body' 'body body body body body body body body body body'
+    width: 600px
+    
+    h2
+      grid-area: title
+
+    .delete
+      grid-area: delete
+      width: 100%
+      height: 100%
+
+    .author
+      grid-area: author
+
+    .date
+      grid-area: date
+
+    .messageBody
+      grid-area: body
+  
+
+.newMessage
+  display: grid
+  grid-template: repeat(5, 25px) / repeat(6, 1fr)
+  grid-template-areas: 'title . . . . .' 'titleInput titleInput titleInput titleInput titleInput titleInput' 'body . . . . .' 'bodyInput bodyInput bodyInput bodyInput bodyInput bodyInput' 'post . . . . .'
+  width: 600px
+
+  #title
+    grid-area: title
+
+  #titleInput
+    grid-area: titleInput
+
+  #body
+    grid-area: body
+  
+  #bodyInput
+    grid-area: bodyInput
+  
+  #post
+    grid-area: post
+
+.loginForm
+  display: grid
+  grid-template: repeat(5, 25px) / repeat(6, 1fr)
+  grid-template-areas: 'email . . . . .' 'emailLogin emailLogin emailLogin emailLogin emailLogin emailLogin' 'password . . . . .' 'passwordLogin passwordLogin passwordLogin passwordLogin passwordLogin passwordLogin' 'login . . . . .'
+  width: 600px
+
+  #email
+    grid-area: email
+
+  #emailLogin
+    grid-area: emailLogin
+
+  #password
+    grid-area: password
+  
+  #passwordLogin
+    grid-area: passwordLogin
+  
+  #login
+    grid-area: login
+
+
+.signupForm
+  display: grid
+  grid-template: repeat(11, 25px) / repeat(6, 1fr)
+  grid-template-areas: 'firstName firstName . . . .' 'firstNameInput firstNameInput firstNameInput firstNameInput firstNameInput firstNameInput' 'lastName lastName . . . .' 'lastNameInput lastNameInput lastNameInput lastNameInput lastNameInput lastNameInput' 'emailSignup emailSignup . . . .' 'emailSignupInput emailSignupInput emailSignupInput emailSignupInput emailSignupInput emailSignupInput' 'passwordSignup passwordSignup . . . .' 'passwordSignupInput passwordSignupInput passwordSignupInput passwordSignupInput passwordSignupInput passwordSignupInput' 'confirmPassword confirmPassword . . . .' 'confirmPasswordInput confirmPasswordInput confirmPasswordInput confirmPasswordInput confirmPasswordInput confirmPasswordInput' 'signup . . . . .'
+  width: 600px
+
+  #firstName
+    grid-area: firstName
+
+  #firstNameInput
+    grid-area: firstNameInput
+
+  #lastName
+    grid-area: lastName
+
+  #lastNameInput
+    grid-area: lastNameInput
+  
+  #emailSignup
+    grid-area: emailSignup
+  
+  #emailSignupInput
+    grid-area: emailSignupInput
+
+  #passwordSignup
+    grid-area: passwordSignup
+    
+  #passwordSignupInput
+    grid-area: passwordSignupInput
+
+  #confirmPassword
+    grid-area: confirmPassword
+
+  #confirmPasswordInput
+    grid-area: confirmPasswordInput
+
+  #signup
+    grid-area: signup
+
+.adminForm
+  display: grid
+  grid-template: repeat(3, 25px) / repeat(6, 1fr)
+  grid-template-areas: 'adminCode adminCode adminCode adminCode adminCode adminCode' 'adminCodeInput adminCodeInput adminCodeInput adminCodeInput adminCodeInput adminCodeInput' 'adminCodeSubmit . . . . .'
+  width: 600px
+  
+  #adminCode
+    grid-area: adminCode
+  #adminCodeInput
+    grid-area: adminCodeInput
+  #adminCodeSubmit
+    grid-area: adminCodeSubmit

@@ -3,28 +3,18 @@ extends layout
 block content 
   h1 Sign up
 
-  form(method='POST', action='')
-    label(for='firstName') First name
-    br
-    input(type='text' name='firstName' value=(user !== undefined ? user.firstName : ''))
-    br
-    label(for='lastName') Last name 
-    br
-    input(type='text' name='lastName' value=(user !== undefined ? user.lastName : ''))
-    br
-    label(for='email') Email
-    br
-    input(type='email' name='email' value=(user !== undefined ? user.email : ''))
-    br
-    label(for='password') Password 
-    br
-    input(type='password' name='password' value=(password !== undefined ? password : ''))
-    br
-    label(for='passwordConfirmation') Confirm password 
-    br
-    input(type='password' name='passwordConfirmation')
-    br
-    input(type='submit' value='Sign up')
+  form.signupForm(method='POST', action='')
+    label#firstName(for='firstName') First name
+    input#firstNameInput(type='text' name='firstName' value=(user !== undefined ? user.firstName : ''))
+    label#lastName(for='lastName') Last name 
+    input#lastNameInput(type='text' name='lastName' value=(user !== undefined ? user.lastName : ''))
+    label#emailSignup(for='email') Email
+    input#emailSignupInput(type='email' name='email' value=(user !== undefined ? user.email : ''))
+    label#passwordSignup(for='password') Password 
+    input#passwordSignupInput(type='password' name='password' value=(password !== undefined ? password : ''))
+    label#confirmPassword(for='passwordConfirmation') Confirm password 
+    input#confirmPasswordInput(type='password' name='passwordConfirmation')
+    input#signup(type='submit' value='Sign up')
   if errors 
     ul 
       for error in errors 

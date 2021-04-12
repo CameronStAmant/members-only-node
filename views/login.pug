@@ -3,16 +3,12 @@ extends layout
 block content 
   h1 Log in 
 
-  form(method='POST' action='')
-    label(for='email') Email 
-    br
-    input(type='email' name='email' value=(email !== undefined ? email : ''))
-    br
-    label(for='password') Password
-    br
-    input(type='password' name='password' value=(password !== undefined ? password : ''))
-    br
-    input(type='submit' value='Login')
+  form.loginForm(method='POST' action='')
+    label#email(for='email') Email 
+    input#emailLogin(type='email' name='email' value=(email !== undefined ? email : ''))
+    label#password(for='password') Password
+    input#passwordLogin(type='password' name='password' value=(password !== undefined ? password : ''))
+    input#login(type='submit' value='Login')
   if errors 
     ul 
       for error in errors 

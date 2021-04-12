@@ -3,16 +3,12 @@ extends layout
 block content 
   h1 Create a new message
 
-  form(method='POST' action='')
-    label(for='title') Title 
-    br
-    input(type='text' name='title' value=(message !== undefined ? message.title : ''))
-    br
-    label(for='body') Body 
-    br
-    textarea(name='body' value=(message !== undefined ? message.body : ''))
-    br
-    input(type='submit' value='Post')
+  form.newMessage(method='POST' action='')
+    label#title(for='title') Title 
+    input#titleInput(type='text' name='title' value=(message !== undefined ? message.title : ''))
+    label#body(for='body') Body 
+    textarea#bodyInput(name='body' value=(message !== undefined ? message.body : ''))
+    input#post(type='submit' value='Post')
   if errors 
     ul 
       for error in errors 

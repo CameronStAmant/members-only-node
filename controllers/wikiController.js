@@ -149,7 +149,7 @@ exports.join_club_post = [
 ];
 
 exports.create_message_get = (req, res, next) => {
-  res.render('message_form');
+  res.render('message_form', { user: req.user });
 };
 
 exports.create_message_post = [
@@ -180,7 +180,7 @@ exports.create_message_post = [
 ];
 
 exports.add_admin_get = (req, res, next) => {
-  res.render('add_admin');
+  res.render('add_admin', { user: req.user });
 };
 
 exports.add_admin_post = [
@@ -226,3 +226,8 @@ exports.add_admin_post = [
     }
   },
 ];
+
+exports.logout_get = (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+};
