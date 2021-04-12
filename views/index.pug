@@ -10,3 +10,11 @@ block content
       a(href='create-message') Create a message!
   else 
     p Welcome to the club!
+  if messages 
+    ul 
+      for message in messages
+        h2= message.title
+        if user
+          p Author: #{message.author.firstName}
+          p Date: #{message.timestamp_formatted}
+        p= message.body
