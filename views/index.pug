@@ -13,6 +13,10 @@ block content
   if messages 
     ul 
       for message in messages
+        if user !== undefined && user.adminStatus === true
+          form(method='POST' action='')
+            input(type='hidden' name='id' value=message.id)
+            input(type='submit' value='Delete')
         h2= message.title
         if user
           p Author: #{message.author.firstName}
