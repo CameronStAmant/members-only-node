@@ -4,5 +4,9 @@ block content
   h1= title
   if user
     p You're logged in #{user.firstName}.
+    if user.membershipStatus === false
+      p Now that you have an account, enter the secret code #[a(href='join-club') here] to join the club!
+    else 
+      a(href='create-message') Create a message!
   else 
     p Welcome to the club!

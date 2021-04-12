@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  h1 Create a new message
+
+  form(method='POST' action='')
+    label(for='title') Title 
+    br
+    input(type='text' name='title' value=(message !== undefined ? message.title : ''))
+    br
+    label(for='body') Body 
+    br
+    textarea(name='body' value=(message !== undefined ? message.body : ''))
+    br
+    input(type='submit' value='Post')
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg

@@ -15,4 +15,10 @@ router.get('/join-club', wiki_controller.join_club_get);
 
 router.post('/join-club', wiki_controller.join_club_post);
 
+router.get('/create-message', wiki_controller.create_message_get);
+
+router.post('/create-message', wiki_controller.create_message_post);
+
+router.get('/');
+
 module.exports = router;

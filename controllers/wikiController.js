@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Message = require('../models/message');
 const { body, validationResult } = require('express-validator');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
@@ -141,6 +142,37 @@ exports.join_club_post = [
       } else {
         res.render('join_club');
       }
+    }
+  },
+];
+
+exports.create_message_get = (req, res, next) => {
+  res.render('message_form');
+};
+
+exports.create_message_post = [
+  body('title', 'Title is required').trim().isLength({ min: 1 }).escape(),
+  body('body', 'Body is required').trim().isLength({ min: 1 }).escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const message = new Message({
+      title: req.body.title,
+      body: req.body.body,
+      author: req.user.id,
+    });
+    if (!errors.isEmpty()) {
+      res.render('message_form', {
+        message: message,
+        errors: errors.array(),
+      });
+    } else {
+      message.save((err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect('/');
+      });
     }
   },
 ];
