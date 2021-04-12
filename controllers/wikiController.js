@@ -63,6 +63,7 @@ exports.signup_post = [
         lastName: req.body.lastName,
         email: req.body.email,
         password: hashedPassword,
+        membershipStatus: false,
       });
 
       if (!errors.isEmpty()) {
@@ -94,5 +95,52 @@ exports.signup_post = [
         });
       }
     });
+  },
+];
+
+exports.join_club_get = (req, res, next) => {
+  res.render('join_club');
+};
+
+exports.join_club_post = [
+  body('joinCode').trim().isLength({ min: 1 }).escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('join_club');
+      return;
+    } else {
+      if (req.body.joinCode === 'join') {
+        User.findOne({ _id: req.user._id }).exec((err, user) => {
+          if (err) {
+            return next(err);
+          }
+          if (user) {
+            const user = new User({
+              firstName: req.user.firstName,
+              lastName: req.user.lastName,
+              email: req.user.email,
+              password: req.user.password,
+              _id: req.user._id,
+              membershipStatus: true,
+            });
+            User.findByIdAndUpdate(
+              req.user._id,
+              user,
+              {},
+              (err, updatedUser) => {
+                if (err) {
+                  return next(err);
+                }
+                res.redirect('/');
+              }
+            );
+          }
+        });
+      } else {
+        res.render('join_club');
+      }
+    }
   },
 ];

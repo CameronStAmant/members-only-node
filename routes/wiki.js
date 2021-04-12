@@ -11,4 +11,8 @@ router.get('/signup', wiki_controller.signup_get);
 
 router.post('/signup', wiki_controller.signup_post);
 
+router.get('/join-club', wiki_controller.join_club_get);
+
+router.post('/join-club', wiki_controller.join_club_post);
+
 module.exports = router;

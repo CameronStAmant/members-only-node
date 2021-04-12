@@ -10,6 +10,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 
 const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
