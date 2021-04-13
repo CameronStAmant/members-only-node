@@ -18,9 +18,9 @@ block content
         div.message
           h2= message.title
           if user !== undefined && user.adminStatus === true
-            form(method='POST' action='' id='deleteMessage')
+            form(method='POST' action='')
               input(type='hidden' name='id' value=message.id)
-            button.delete(type='submit' form='deleteMessage' value='Submit') Delete
+              button.delete(type='submit' value='Submit') Delete
           if user
             p.author #{message.author.firstName}
             p.date #{message.timestamp_formatted}

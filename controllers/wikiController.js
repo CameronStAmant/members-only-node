@@ -101,7 +101,11 @@ exports.signup_post = [
 ];
 
 exports.join_club_get = (req, res, next) => {
-  res.render('join_club');
+  if (req.user === undefined) {
+    res.redirect('/');
+  } else {
+    res.render('join_club');
+  }
 };
 
 exports.join_club_post = [
@@ -149,7 +153,11 @@ exports.join_club_post = [
 ];
 
 exports.create_message_get = (req, res, next) => {
-  res.render('message_form', { user: req.user });
+  if (req.user === undefined || req.user.membershipStatus !== true) {
+    res.redirect('/');
+  } else {
+    res.render('message_form', { user: req.user });
+  }
 };
 
 exports.create_message_post = [
@@ -180,7 +188,11 @@ exports.create_message_post = [
 ];
 
 exports.add_admin_get = (req, res, next) => {
-  res.render('add_admin', { user: req.user });
+  if (req.user === undefined || req.user.membershipStatus !== true) {
+    res.redirect('/');
+  } else {
+    res.render('add_admin', { user: req.user });
+  }
 };
 
 exports.add_admin_post = [
