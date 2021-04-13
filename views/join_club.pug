@@ -3,12 +3,12 @@ extends layout
 block content 
   h1 Join the club!
 
-  form(method='POST' action='')
-    label(for='joinCode') Enter the secret code to join the club 
+  form.joinClubForm(method='POST' action='')
+    label#joinCode(for='joinCode') Enter the secret code to join the club 
     br
-    input(type='text' name='joinCode')
+    input#joinCodeInput(type='text' name='joinCode')
     br
-    input(type='submit' value='Join')
+    input#joinCodeSubmit(type='submit' value='Join')
   if errors
     ul 
       for error in errors 

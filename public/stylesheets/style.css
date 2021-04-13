@@ -129,4 +129,16 @@ h1 {
   .adminForm #adminCodeSubmit {
     grid-area: adminCodeSubmit; }
 
+.joinClubForm {
+  display: grid;
+  grid-template: repeat(3, 25px)/repeat(6, 1fr);
+  grid-template-areas: 'joinCode joinCode joinCode joinCode joinCode joinCode' 'joinCodeInput joinCodeInput joinCodeInput joinCodeInput joinCodeInput joinCodeInput' 'joinCodeSubmit . . . . .';
+  width: 600px; }
+  .joinClubForm #joinCode {
+    grid-area: joinCode; }
+  .joinClubForm #joinCodeInput {
+    grid-area: joinCodeInput; }
+  .joinClubForm #joinCodeSubmit {
+    grid-area: joinCodeSubmit; }
+
 /*# sourceMappingURL=style.css.map */

@@ -161,3 +161,16 @@ h1
     grid-area: adminCodeInput
   #adminCodeSubmit
     grid-area: adminCodeSubmit
+
+.joinClubForm
+  display: grid
+  grid-template: repeat(3, 25px) / repeat(6, 1fr)
+  grid-template-areas: 'joinCode joinCode joinCode joinCode joinCode joinCode' 'joinCodeInput joinCodeInput joinCodeInput joinCodeInput joinCodeInput joinCodeInput' 'joinCodeSubmit . . . . .'
+  width: 600px
+  
+  #joinCode
+    grid-area: joinCode
+  #joinCodeInput
+    grid-area: joinCodeInput
+  #joinCodeSubmit
+    grid-area: joinCodeSubmit
