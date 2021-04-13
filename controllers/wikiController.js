@@ -5,7 +5,11 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 exports.login_get = (req, res, next) => {
-  res.render('login');
+  if (req.user !== undefined) {
+    res.redirect('/');
+  } else {
+    res.render('login');
+  }
 };
 
 exports.login_post = [
@@ -38,7 +42,11 @@ exports.login_post = [
 ];
 
 exports.signup_get = (req, res, next) => {
-  res.render('signup');
+  if (req.user !== undefined) {
+    res.redirect('/');
+  } else {
+    res.render('signup');
+  }
 };
 
 exports.signup_post = [
@@ -104,7 +112,7 @@ exports.join_club_get = (req, res, next) => {
   if (req.user === undefined) {
     res.redirect('/');
   } else {
-    res.render('join_club');
+    res.render('join_club', { user: req.user });
   }
 };
 
