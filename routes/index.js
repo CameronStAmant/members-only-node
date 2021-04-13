@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
         return next(err);
       }
       res.render('index', {
-        title: 'Welcome to the club!',
+        title: 'Welcome to the Secret Message Board!',
         user: req.user,
         messages: list_messages,
       });
