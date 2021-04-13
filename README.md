@@ -1,0 +1,1 @@
+This project is built using Node and Express, with Passport local on top. It also uses pug and sass to style. It's main focus was to have users with permissions, as well as pages that dynamically display content, based on the users permission level, which is tied to their data in MongoDB.
