@@ -10,7 +10,11 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const comptression = require('compression');
+const helmet = require('helmet');
+
 mongoose.set('useFindAndModify', false);
+app.use(compression());
 
 const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -54,11 +58,13 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
+const app = express();
+app.use(helmet());
+app.use(compression());
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const wikiRouter = require('./routes/wiki');
-
-const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
