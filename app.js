@@ -10,7 +10,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-const comptression = require('compression');
+const compression = require('compression');
 const helmet = require('helmet');
 
 mongoose.set('useFindAndModify', false);
