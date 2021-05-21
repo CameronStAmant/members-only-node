@@ -14,7 +14,6 @@ const comptression = require('compression');
 const helmet = require('helmet');
 
 mongoose.set('useFindAndModify', false);
-app.use(compression());
 
 const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
